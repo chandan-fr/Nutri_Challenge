@@ -82,7 +82,7 @@ const Profile: React.FC<ProfileProps> = ({ navigation }) => {
           <View style={styles.taskWrap}>
             <View style={styles.taskHead}>
               <Text style={{ color: dark, fontSize: 17, fontWeight: "600" }}>Task Today</Text>
-              <Text style={{ color: green, fontSize: 13 }}>{1} OF {5} COMPLETE</Text>
+              <Text style={{ color: green, fontSize: 13 }}>{1} OF {tasks.length} COMPLETE</Text>
             </View>
 
             <FlatList
@@ -111,6 +111,7 @@ const Profile: React.FC<ProfileProps> = ({ navigation }) => {
                       }
                     </View>
                   </View>
+                  
                   {index == tasks.length - 1 ? null : <View style={{ marginHorizontal: 7 }} />}
                 </>
               )}

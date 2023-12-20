@@ -40,7 +40,8 @@ const TabNavigation: React.FC<TabNavigationProps> = ({ navigation }) => {
             <Tab.Screen
                 name="tasks"
                 options={{
-                    headerShown: false
+                    headerShown: false,
+                    tabBarStyle: { display: "none" }
                 }}
                 component={Tasks}
             />

@@ -18,4 +18,5 @@ export const tasks: TaskToday[] = [
     {is_complete: true, desp: "Eat Nutritious Food"},
     {is_complete: false, desp: "30 Minutes Walking"},
     {is_complete: false, desp: "45 Minutes Pilates"},
+    {is_complete: false, desp: "30 Minutes Fitness"},
 ];
