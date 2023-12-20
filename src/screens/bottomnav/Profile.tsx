@@ -35,7 +35,7 @@ const Profile: React.FC<ProfileProps> = ({ navigation }) => {
 
         {/* welcom user  */}
         <View style={styles.welcomeSec}>
-          <Text style={styles.welcomeText}>Hi, Ryan Davis 👋</Text>
+          <Text style={styles.welcomeText}>Hi, Olivia Davis 👋</Text>
         </View>
 
         <ScrollView showsVerticalScrollIndicator={false} style={{ marginTop: 25, }}>

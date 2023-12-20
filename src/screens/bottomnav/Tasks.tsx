@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, SafeAreaView, FlatList, Dimensions } from 'react-native'
-import React, { useEffect, useRef, useState } from 'react'
-import { dark, darkShade1, darkShade3, gold, green, greenShade1, greenShade2, greenShade3, light, lightShade1 } from '../../config/StaticColors';
+import { StyleSheet, Text, View, Image, TouchableOpacity, SafeAreaView, FlatList, Dimensions } from 'react-native'
+import React, { useEffect, useRef } from 'react'
+import { dark, darkShade1, darkShade3, gold, green, greenShade1, greenShade2, greenShade3, light } from '../../config/StaticColors';
 import { DayDate, getMonthToDatesArray } from '../../config/MonthsToDateArray';
 import { tasks } from '../../config/StaticVariables';
 
@@ -19,7 +19,6 @@ const Tasks: React.FC<TasksProps> = ({ navigation }) => {
   const currentMonth: string = new Date().toLocaleString('en-US', { month: 'long' });
   const actvProg: number = 35;
 
-  // const [curIndex, setCurIndex] = useState<any>(new Date().getDate());
   const flatListRef = useRef<FlatList<DayDate>>(null);
 
   const getItemLayout = (data: any, index: number) => {

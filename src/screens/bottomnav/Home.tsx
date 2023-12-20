@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, SafeAreaView, FlatList, TextInput, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, SafeAreaView, TextInput, Dimensions } from 'react-native'
 import React, { useState } from 'react'
 import { dark, darkShade1, darkShade2, gold, goldShade1, green, greenShade3, light, lightShade2 } from '../../config/StaticColors';
 

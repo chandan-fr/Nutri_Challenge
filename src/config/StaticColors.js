@@ -12,4 +12,9 @@ const lightShade2 = "#EAECEC";
 const gold = "#F19733";
 const goldShade1 = "#EDE6DF";
 
-module.exports = {dark, darkShade1, darkShade2, green, greenShade1, greenShade2, greenShade3, light, lightShade1, gold, goldShade1, lightShade2, darkShade3};
+module.exports = {
+    dark, darkShade1, darkShade2,
+    green, greenShade1, greenShade2, greenShade3,
+    light, lightShade1, gold, goldShade1,
+    lightShade2, darkShade3
+};
