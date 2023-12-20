@@ -17,7 +17,10 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
 
         {/* head bar */}
         <View style={styles.headWrap}>
-          <TouchableOpacity style={{ padding: 7 }} onPress={() => navigation.openDrawer()}>
+          <TouchableOpacity
+            style={{ paddingVertical: 7, paddingRight: 7 }}
+            onPress={() => navigation.openDrawer()}
+          >
             <Image style={styles.menuIcon} source={require("../../assets/icons/hamburger.png")} />
           </TouchableOpacity>
 
