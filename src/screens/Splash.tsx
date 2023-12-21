@@ -1,9 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Dimensions, Image, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 
 interface SplashProps {
   navigation: any;
 }
+
+const {width, height} = Dimensions.get("window");
 
 const Splash: React.FC<SplashProps> = ({ navigation }) => {
   useEffect(() => {
@@ -12,7 +14,8 @@ const Splash: React.FC<SplashProps> = ({ navigation }) => {
 
   return (
     <View>
-      <Text>Splash</Text>
+      <StatusBar backgroundColor={"transparent"} translucent={true} />
+      <Image style={{width: width, height: height}} source={require("../assets/images/screen.png")} />
     </View>
   )
 }
