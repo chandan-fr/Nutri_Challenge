@@ -2,14 +2,15 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, SafeAreaVi
 import React, { useState } from 'react'
 import { dark, darkShade1, darkShade2, gold, goldShade1, green, greenShade3, light, lightShade2 } from '../../config/StaticColors';
 
-interface MessagesProps {
+
+type MessagesProps = {
   navigation: any;
 }
 
 const { width, height } = Dimensions.get("window");
 
 
-const Messages: React.FC<MessagesProps> = ({ navigation }) => {
+const Messages = ({ navigation }: MessagesProps) => {
   return (
     <SafeAreaView style={styles.parent}>
       <View style={styles.body}>
@@ -75,7 +76,7 @@ const Messages: React.FC<MessagesProps> = ({ navigation }) => {
           <Text style={styles.secHead}>Diet Recipes</Text>
 
           <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={[styles.drCont, {marginTop: 10}]}>
+            <View style={[styles.drCont, { marginTop: 10 }]}>
               <View style={styles.drContBox}></View>
 
               <View style={styles.drContBody}>
