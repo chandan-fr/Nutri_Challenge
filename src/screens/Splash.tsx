@@ -5,17 +5,20 @@ interface SplashProps {
   navigation: any;
 }
 
-const {width, height} = Dimensions.get("window");
+const { width, height } = Dimensions.get("screen");
 
 const Splash: React.FC<SplashProps> = ({ navigation }) => {
   useEffect(() => {
-    setTimeout(()=> navigation.replace("drawernav"), 2000);
+    setTimeout(() => navigation.replace("drawernav"), 2000);
   }, []);
 
   return (
-    <View>
+    <View style={{flex: 1}}>
       <StatusBar backgroundColor={"transparent"} translucent={true} />
-      <Image style={{width: width, height: height}} source={require("../assets/images/screen.png")} />
+      <Image
+        style={{ width: width, height: height }}
+        source={require("../assets/images/screen.png")}
+      />
     </View>
   )
 }
