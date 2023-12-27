@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, SafeAreaView, FlatList, Dimensions } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { dark, darkShade1, gold, green, greenShade1, greenShade2, greenShade3, light, lightShade1 } from '../../config/StaticColors';
 import { slides, tasks } from '../../config/StaticVariables';
 
@@ -12,7 +12,19 @@ const { width, height } = Dimensions.get("window");
 
 const Profile: React.FC<ProfileProps> = ({ navigation }) => {
   const [curIndex, setCurIndex] = useState<any>(0);
+  const ref = useRef<FlatList>(null);
 
+  useEffect(() => {
+    const changeSlide = setTimeout(() => {
+      if (curIndex < slides.length - 1) {
+        ref.current?.scrollToIndex({ animated: true, index: parseInt(curIndex) + 1 });
+      } else {
+        ref.current?.scrollToIndex({ animated: true, index: 0 });
+      }
+    }, 2500);
+
+    return () => clearTimeout(changeSlide);
+  }, [curIndex]);
 
   return (
     <SafeAreaView style={styles.parent}>
@@ -42,6 +54,7 @@ const Profile: React.FC<ProfileProps> = ({ navigation }) => {
           {/* slider */}
           <View style={styles.sliderWrap}>
             <FlatList
+              ref={ref}
               data={slides}
               pagingEnabled
               showsHorizontalScrollIndicator={false}
@@ -111,7 +124,7 @@ const Profile: React.FC<ProfileProps> = ({ navigation }) => {
                       }
                     </View>
                   </View>
-                  
+
                   {index == tasks.length - 1 ? null : <View style={{ marginHorizontal: 7 }} />}
                 </>
               )}
