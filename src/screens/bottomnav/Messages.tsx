@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
   inputBox: {
     flex: 1,
     marginLeft: 5,
+    color: darkShade1,
   },
   searchIcon: {
     width: 20,
