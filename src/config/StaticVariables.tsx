@@ -20,3 +20,16 @@ export const tasks: TaskToday[] = [
     {is_complete: false, desp: "45 Minutes Pilates"},
     {is_complete: false, desp: "30 Minutes Fitness"},
 ];
+
+export type Activity = {
+    acImg: any;
+    name: string;
+    notification: number;
+};
+
+export const activityList: Activity[] = [
+    {acImg: require("../assets/icons/calendar.png"), name: "My Calendar", notification: 4},
+    {acImg: require("../assets/icons/documents.png"), name: "My Documents", notification: 0},
+    {acImg: require("../assets/icons/graph.png"), name: "My Activity", notification: 2},
+    {acImg: require("../assets/icons/settings.png"), name: "Settings", notification: 0},
+];
