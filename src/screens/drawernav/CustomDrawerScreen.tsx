@@ -1,19 +1,59 @@
 import { StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-import { dark, darkShade1, gold, goldShade1, green, greenShade1, greenShade3, light } from '../../config/StaticColors';
+import { dark, darkShade1, green, greenShade1, greenShade3, light } from '../../config/StaticColors';
 import { Activity, activityList } from '../../config/StaticVariables';
+import { useDrawerProgress } from '@react-navigation/drawer';
+import Animated, { useSharedValue, useAnimatedStyle, withSpring, interpolate } from 'react-native-reanimated';
 
 interface CustomDrawerScreenProps {
     navigation: any;
-}
+};
+
 
 const CustomDrawerScreen: React.FC<CustomDrawerScreenProps> = ({ navigation }) => {
     const [curIndex, setCurIndex] = useState<number>(2);
+    const drawerProgress = useDrawerProgress();
+
+    const viewStyle = useAnimatedStyle(() => {
+        const translateX = interpolate(
+            drawerProgress.value,
+            [0, 1],
+            [-200, 0],
+        );
+
+        const opacity = interpolate(
+            drawerProgress.value,
+            [0,1],
+            [0,1]
+        );
+
+        return {
+            transform: [{ translateX }], opacity
+        }
+    });
+
+    const viewStyle1 = useAnimatedStyle(() => {
+        const translateY = interpolate(
+            drawerProgress.value,
+            [0, 1],
+            [200, 0],
+        );
+
+        const opacity = interpolate(
+            drawerProgress.value,
+            [0,1],
+            [0,1]
+        );
+
+        return {
+            transform: [{ translateY }], opacity
+        }
+    });
 
     return (
         <SafeAreaView style={styles.parent}>
             <View style={styles.body}>
-                <View style={[styles.contBox, { flexDirection: "row", alignItems: "center" }]}>
+                <Animated.View style={[styles.contBox, { flexDirection: "row", alignItems: "center" }, viewStyle]}>
                     <View style={{ width: 50, height: 50, backgroundColor: greenShade3, borderRadius: 12, }} />
 
                     <View
@@ -23,9 +63,9 @@ const CustomDrawerScreen: React.FC<CustomDrawerScreenProps> = ({ navigation }) =
                             Hi, Olivia 👋
                         </Text>
                     </View>
-                </View>
+                </Animated.View>
 
-                <View style={[styles.contBox]}>
+                <Animated.View style={[styles.contBox, viewStyle1]}>
                     {activityList.map((item: Activity, i) => (
                         <View key={i}>
                             <TouchableOpacity
@@ -60,9 +100,9 @@ const CustomDrawerScreen: React.FC<CustomDrawerScreenProps> = ({ navigation }) =
                             {i < activityList.length - 1 ? <View style={{ marginBottom: 10 }} /> : null}
                         </View>
                     ))}
-                </View>
+                </Animated.View>
 
-                <View style={[styles.contBox]}>
+                <Animated.View style={[styles.contBox, viewStyle]}>
                     <Text style={{ fontSize: 17, color: dark, fontWeight: "600" }}>
                         Projects {3}
                     </Text>
@@ -110,19 +150,53 @@ const CustomDrawerScreen: React.FC<CustomDrawerScreenProps> = ({ navigation }) =
                             </Text>
                         </View>
                     </View>
-                </View>
+                </Animated.View>
 
-                <View style={[styles.contBox, {flexDirection: "row",  alignItems: "center"}]}>
+                <Animated.View style={[styles.contBox, { flexDirection: "row", alignItems: "center" }, viewStyle1]}>
                     <View>
                         <Image style={styles.profileImg} source={require("../../assets/icons/woman.png")} />
                     </View>
 
-                    <View style={{marginLeft: 15, flex: 1}}>
-                        <Text style={{fontSize: 19, color: dark, fontWeight: "600"}}>Olivia Davis</Text>
-                        <Text style={{fontSize: 15, color: darkShade1, }}>MERN Developer</Text>
-                        <Text style={{fontSize: 15, color: darkShade1, }}>React Native Developer</Text>
+                    <View style={{ marginLeft: 15, flex: 1 }}>
+                        <Text style={{ fontSize: 19, color: dark, fontWeight: "600", marginBottom: 6 }}>Olivia Davis</Text>
+                        {/* <Text style={{fontSize: 14, color: darkShade1, }}>MERN Developer</Text> */}
+                        <Text style={{ fontSize: 15, color: darkShade1, }}>SoftWare Engineer</Text>
                     </View>
-                </View>
+                </Animated.View>
+
+                <Animated.View style={[styles.contBox, viewStyle]}>
+                    <Text style={{ fontSize: 17, color: dark, fontWeight: "600" }}>
+                        Activities {2}
+                    </Text>
+
+                    <View style={{ backgroundColor: darkShade1, height: 1, marginVertical: 10, }} />
+
+                    <View style={{}}>
+                        <View style={{ flexDirection: "row", alignItems: "center" }}>
+                            <View style={{ width: 35, height: 35, backgroundColor: greenShade1, borderRadius: 12, }} />
+
+                            <View
+                                style={{ borderRadius: 12, flex: 1, justifyContent: "center", marginLeft: 15, }}
+                            >
+                                <Text style={{ color: dark, fontSize: 15, fontWeight: "600" }}>
+                                    30 Minutes Fitness
+                                </Text>
+                            </View>
+                        </View>
+
+                        <View style={{ flexDirection: "row", alignItems: "center", marginTop: 8 }}>
+                            <View style={{ width: 35, height: 35, backgroundColor: greenShade1, borderRadius: 12, }} />
+
+                            <View
+                                style={{ borderRadius: 12, flex: 1, justifyContent: "center", marginLeft: 15, }}
+                            >
+                                <Text style={{ color: dark, fontSize: 15, fontWeight: "600" }}>
+                                    30 Minutes Walking
+                                </Text>
+                            </View>
+                        </View>
+                    </View>
+                </Animated.View>
             </View>
         </SafeAreaView>
     )
@@ -169,7 +243,7 @@ const styles = StyleSheet.create({
         height: 25,
         tintColor: light,
     },
-    profileImg:{
+    profileImg: {
         width: 70,
         height: 70,
     }
